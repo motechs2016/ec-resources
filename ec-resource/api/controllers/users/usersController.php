@@ -13,16 +13,16 @@ class usersController extends Spine_SuperController
 		}
 	}
 	
-	//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 	
 	public function indexAction()
 	{
 		$user_details	=	'Invalid Access';
 		$this->setHeaders('HTTP/1.0 401 Unauthorized');
-		registerOutput($user_details);
+		output($user_details);
 	}
 	
-	//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 	
 	public function verifyAction()
 	{
@@ -36,6 +36,9 @@ class usersController extends Spine_SuperController
 			
 			if ($user_details)
 			{
+				foreach ($user_details as $index => $value)
+					$user_details[$index]	=	form_safe_json($value);
+					
 				$this->setHeaders('HTTP/1.0 202 Accepted');
 			}
 			else
@@ -43,17 +46,17 @@ class usersController extends Spine_SuperController
 				$user_details	=	'Invalid Access';
 				$this->setHeaders('HTTP/1.0 401 Unauthorized');
 			}
-			output($user_details);
+			$this->displayPhtml('content', 'main/content', array('output' => output($user_details)));
 		}
 		else
 		{
 			$user_details	=	'Invalid Access';
 			$this->setHeaders('HTTP/1.0 401 Unauthorized');
-			registerOutput($user_details);
+			output($user_details);
 		}
 	}
 	
-	//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 	
 	public function getNewTokenAction()
 	{
@@ -75,17 +78,17 @@ class usersController extends Spine_SuperController
 				$this->setHeaders('HTTP/1.0 401 Unauthorized');
 			}
 			
-			registerOutput($user_details); //to send the output to a blank template
+			output($user_details); //to send the output to a blank template
 		}
 		else
 		{
 			$user_details	=	'Invalid Access';
 			$this->setHeaders('HTTP/1.0 401 Unauthorized');
-			registerOutput($user_details);
+			output($user_details);
 		}
 	}
 	
-	//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 	
 	public function validateTokenAction()
 	{
@@ -105,17 +108,18 @@ class usersController extends Spine_SuperController
 				$this->setHeaders('HTTP/1.0 401 Unauthorized');
 			}
 			
-			registerOutput($user_details); //to send the output to a blank template
+			//output($user_details); //to send the output to a blank template
+			$this->displayPhtml('content', 'main/content', array('output' => output($user_details)));
 		}
 		else
 		{
 			$user_details	=	'Invalid Access';
 			$this->setHeaders('HTTP/1.0 401 Unauthorized');
-			registerOutput($user_details);
+			output($user_details);
 		}
 	}
 	
-	//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 	
 	public function flushTokenAction()
 	{
@@ -137,16 +141,16 @@ class usersController extends Spine_SuperController
 				$this->setHeaders('HTTP/1.0 401 Unauthorized');
 			}
 			
-			registerOutput($user_details); //to send the output to a blank template
+			$this->displayPhtml('content', 'main/content', array('output' => output($user_details))); //to send the output to a blank template
 		}
 	}
 	
-	//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 	
 	public function end()
 	{
 	}
 	
-	//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 	
 }

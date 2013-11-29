@@ -23,11 +23,15 @@ class override extends Spine_OverrideAbstract
 		)
 	);
 
-	public function showPHPInfo()
+//------------------------------------------------------------------------------------	
+	
+	/*public function showPHPInfo()
 	{
 		echo 'Access Forbidden';
-	}
+	}*/
 	
+//------------------------------------------------------------------------------------
+
 	public function siteInfo($parameters = array())
 	{
 		echo 'Hi '.$parameters['name'].'!'.

@@ -113,5 +113,16 @@ function retrieveOutput()
 
 function output($output)
 {
-	print	is_array($output)?json_encode($output):$output;
+	return	is_array($output)?json_encode($output):$output;
 }
+
+//------------------------------------------------------------------------------------
+
+function form_safe_json($json) 
+{
+   $json = empty($json) ? '[]' : $json ;
+   $search = array('\\',"\n","\r","\f","\t","\b","'") ;
+   $replace = array('\\\\',"\\n", "\\r","\\f","\\t","\\b", "&#039");
+   $json = str_replace($search,$replace,$json);
+   return $json;                          
+}         

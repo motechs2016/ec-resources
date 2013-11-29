@@ -134,7 +134,7 @@ class user_access extends Spine_SuperModel
     
     public function flushToken()
     {
-    	$user			=	new	user();
+    	$user	=	new	user();
     	$user->setUserId($this->user_id);
 	    $user->updateOneColumn('access_token', '');
     }

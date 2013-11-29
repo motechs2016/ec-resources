@@ -23,18 +23,17 @@ class mainController extends Spine_SuperController implements Spine_MainInterfac
 		
 		$this->loadModel('user-access/user_access');
 		$this->loadModel('users/user');
+		$this->displayPhtml('main_phtml', 'main/main');
 	}
 	
 	//------------------------------------------------------------------------------------
 	
 	public function end()
 	{
-		//$this->setHeaders("Cache-Control: public");
-		//$this->setHeaders("Expires: Sat, 26 Jul 2016 05:00:00 GMT");
+		$this->setHeaders("Cache-Control: public");
+		$this->setHeaders("Expires: Sat, 26 Jul 2016 05:00:00 GMT");
 		 //to avoid sending templates
 		 //exit;
-		 
-		$this->displayPhtml('main_phtml', 'main/main');
 	}
 	
 	//------------------------------------------------------------------------------------
