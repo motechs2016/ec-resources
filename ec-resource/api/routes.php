@@ -18,6 +18,9 @@ class routes extends Spine_RouteAbstract
 	'data-mining'		=>	array( 
 			'_name'		=> 'datamining'
 			),
+	'events'			=>	array( 
+			'_name'		=> 'events'
+			),
 	'home'				=>	array( 
 			'_name'		=> 'home'
 			),

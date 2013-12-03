@@ -36,5 +36,5 @@ define('ACCESS_CODE', '12345');
 
 //------------------------------------------------------------------------------------
 
-//define('EDU_COUNSEL_DATA', 'zip://educounsel.data.zip');
+define('COLLEGES_DATA', SITE.'/data/universities_data');
 

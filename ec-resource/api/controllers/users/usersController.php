@@ -146,7 +146,49 @@ class usersController extends Spine_SuperController
 	}
 	
 //------------------------------------------------------------------------------------
+
+	public function updateProfileAction()
+	{
+		if (!empty($_POST))
+		{
+			$this->loadModel('user/user');
+			
+			$credentials	=	$_POST;
+			$user			=	new user();
+			
+			$user->setUserId($_POST['user_id']);
+			$user->setUsername($_POST['username']);
+			$user->setRoleId($_POST['role_id']);
+			$user->setEmailAddress($_POST['email_address']);
+			$user->setFirstname($_POST['firstname']);
+			$user->setLastname($_POST['lastname']);
+			$user->setContactDetails($_POST['contact_details']);
+			$user->setPassword($_POST['password']);
+			$user->setPhoto($_POST['photo']);
+			$user->setAccessToken($_POST['access_token']);
+			
+			$user->update();
+			
+			$user_id	=	$user->getUserId();
+			
+			if ($user_id)
+			{
+				$this->setHeaders('HTTP/1.0 200 OK');
+				$user_details	=	'User profile updated.';
+			}
+			else
+			{
+				$user_details	=	'Invalid Access';
+				$this->setHeaders('HTTP/1.0 401 Unauthorized');
+			}
+			
+			$this->displayPhtml('content', 'main/content', array('output' => output($user_details))); //to send the output to a blank template
+		}
+	}
 	
+
+//------------------------------------------------------------------------------------
+
 	public function end()
 	{
 	}

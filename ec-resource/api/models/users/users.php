@@ -56,6 +56,7 @@ class users extends	Spine_SuperModel
                 $user->setEmailAddress($result["email_address"]);
                 $user->setContactDetrails($result["contact_details"]);
                 $user->setAccessToken($result["access_token"]);
+                $user->setPhoto($result["photo"]);
                 $this->array_of_users[] = $user;
 
             }

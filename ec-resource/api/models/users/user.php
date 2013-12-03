@@ -10,6 +10,7 @@ class user extends	Spine_SuperModel
     private $email_address;
     private $contact_details;
     private $access_token;
+    private $photo;
 
     //------------------------------------------------------------------------------------
     //setter
@@ -49,7 +50,7 @@ class user extends	Spine_SuperModel
         $this->email_address = $email_address;
     }
 
-    public function setContactDetrails($contact_details)
+    public function setContactDetails($contact_details)
     {
         $this->contact_details = $contact_details;
     }
@@ -57,6 +58,11 @@ class user extends	Spine_SuperModel
     public function setAccessToken($access_token)
     {
         $this->access_token = $access_token;
+    }
+
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
     }
 
     //------------------------------------------------------------------------------------
@@ -107,6 +113,11 @@ class user extends	Spine_SuperModel
         return $this->access_token;
     }
 
+    public function getPhotot()
+    {
+        return $this->photo;
+    }
+
     //------------------------------------------------------------------------------------
 
     public function insert()
@@ -124,7 +135,8 @@ class user extends	Spine_SuperModel
                             password,
                             email_address,
                             contact_details,
-                            access_token
+                            access_token,
+                            photo
                         )
                     VALUES
                         (
@@ -135,7 +147,8 @@ class user extends	Spine_SuperModel
                             :password,
                             :email_address,
                             :contact_details,
-                            :access_token
+                            :access_token,
+                            :photo
                         )";
 
             $pdo_statement = $pdo_connection->prepare($sql);
@@ -147,6 +160,7 @@ class user extends	Spine_SuperModel
             $pdo_statement->bindParam(":email_address", $this->email_address, PDO::PARAM_STR);
             $pdo_statement->bindParam(":contact_details", $this->contact_details, PDO::PARAM_STR);
             $pdo_statement->bindParam(":access_token", $this->access_token, PDO::PARAM_STR);
+            $pdo_statement->bindParam(":photo", $this->photo, PDO::PARAM_STR);
             $pdo_statement->execute();
 
             $this->user_id = $pdo_connection->lastInsertId();
@@ -186,6 +200,7 @@ class user extends	Spine_SuperModel
             $this->email_address = $result["email_address"];
             $this->contact_details = $result["contact_details"];
             $this->access_token = $result["access_token"];
+            $this->photo = $result["photo"];
         }
         catch(PDOException $pdoe)
         {
@@ -210,7 +225,8 @@ class user extends	Spine_SuperModel
                         password = :password,
                         email_address = :email_address,
                         contact_details = :contact_details,
-                        access_token = :access_token 
+                        access_token = :access_token, 
+                        photo = :photo
                     WHERE
                         user_id = :user_id";
 
@@ -224,6 +240,7 @@ class user extends	Spine_SuperModel
             $pdo_statement->bindParam(":email_address", $this->email_address, PDO::PARAM_STR);
             $pdo_statement->bindParam(":contact_details", $this->contact_details, PDO::PARAM_STR);
             $pdo_statement->bindParam(":access_token", $this->access_token, PDO::PARAM_STR);
+            $pdo_statement->bindParam(":photo", $this->photo, PDO::PARAM_STR);
             $pdo_statement->execute();
 
         }
@@ -313,6 +330,8 @@ class user extends	Spine_SuperModel
             $this->email_address 	= $result["email_address"];
             $this->contact_details	= $result["contact_details"];
             $this->access_token		= $result["access_token"];
+            $this->photo			= $result["photo"];
+            
         }
         catch(PDOException $pdoe)
         {

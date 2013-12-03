@@ -1,8 +1,8 @@
 <?php
 
-class filebaseJsonHandler extends Spine_SuperModel
+class filebaseJsonHandler 
 {
-	private $path	=	COLLEGES_DATA;
+	public $path	=	COLLEGES_DATA;
 	
 	//------------------------------------------------------------------------------------
 	
@@ -105,5 +105,15 @@ class filebaseJsonHandler extends Spine_SuperModel
 			return TRUE;
 		else 
 			return FALSE;
+	}
+	
+	//------------------------------------------------------------------------------------
+	
+	public function dropTable($name)
+	{
+		$filename	=	$this->path.'/'.$name.'.sfd';
+		
+		if (file_exists($filename))
+			file_put_contents($filename, '');
 	}
 }
