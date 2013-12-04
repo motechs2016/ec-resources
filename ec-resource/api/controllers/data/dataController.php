@@ -47,6 +47,7 @@ class dataController extends Spine_SuperController
 		$json_college->path	=	COLLEGES_DATA;
 		
 		$output	=	$json_college->selectAll('info.colleges');
+
 		$this->setHeaders('HTTP/1.0 200 OK');
 		
 		$this->displayPhtml('content', 'main/content', array('output' => $output));
