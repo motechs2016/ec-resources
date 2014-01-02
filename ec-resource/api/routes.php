@@ -30,6 +30,9 @@ class routes extends Spine_RouteAbstract
 	'user-access'			=>	array(
 			'_name'		=>	'users'
 		),
+	'applications'		=>	array(
+			'_name'		=>	'applications'
+		),
 	'_default'			=>	'home'
 	);
 

@@ -30,8 +30,8 @@ class mainController extends Spine_SuperController implements Spine_MainInterfac
 	
 	public function end()
 	{
-		$this->setHeaders("Cache-Control: public");
-		$this->setHeaders("Expires: Sat, 26 Jul 2016 05:00:00 GMT");
+		//$this->setHeaders("Cache-Control: public");
+		//$this->setHeaders("Expires: Sat, 26 Jul 2016 05:00:00 GMT");
 		 //to avoid sending templates
 		 //exit;
 	}

@@ -37,7 +37,7 @@ class modelGenerator
 	{
 		$content = "<?php".PHP_EOL;
 		$content .= "require_once '{$this->class_name}.php';".PHP_EOL.PHP_EOL;
-		$content .= "class {$this->plural_class_name} extends	Spine_SuperModel".PHP_EOL;
+		$content .= "class {$this->plural_class_name} extends Spine_SuperModel".PHP_EOL;
 		$content .= "{".PHP_EOL;
 		
 		$content .= $this->generatePluralVariableDeclaration();
@@ -151,7 +151,7 @@ class modelGenerator
 	public function generateSingularClass()
 	{
 		$content = "<?php".PHP_EOL;
-		$content .= "class {$this->plural_class_name} extends	Spine_SuperModel".PHP_EOL;
+		$content .= "class {$this->plural_class_name} extends Spine_SuperModel".PHP_EOL;
 		$content .= "{".PHP_EOL;
 		
 		$content .= $this->generateVariableDeclaration();
@@ -288,7 +288,7 @@ class modelGenerator
 		$update .= $this->tabs(2)."try".PHP_EOL;
 		$update .= $this->tabs(2)."{".PHP_EOL;
 		
-		$update .= $this->tabs(3).'$pdo_connection = starfishDatabase::getConnection();'.PHP_EOL;
+		$update .= $this->tabs(3).'$pdo_connection = Spine_DB::connection();'.PHP_EOL;
 		$update .= $this->tabs(3).'$sql = "UPDATE'.PHP_EOL;
 		$update .= $this->tabs(6).$this->table.PHP_EOL;
 		$update .= $this->tabs(5)."SET".PHP_EOL;
@@ -343,7 +343,7 @@ class modelGenerator
    		$delete .= $this->tabs(2)."try".PHP_EOL;
    		$delete .= $this->tabs(2)."{".PHP_EOL;
    	
-   		$delete .= $this->tabs(3).'$pdo_connection = starfishDatabase::getConnection();'.PHP_EOL;
+   		$delete .= $this->tabs(3).'$pdo_connection = Spine_DB::connection();'.PHP_EOL;
    		$delete .= $this->tabs(3).'$sql = "DELETE FROM'.PHP_EOL;
    		$delete .= $this->tabs(7).$this->table."".PHP_EOL;
    		$delete .= $this->tabs(6)."WHERE".PHP_EOL;
@@ -382,7 +382,7 @@ class modelGenerator
 	   	$statement .= $this->tabs(2)."try".PHP_EOL;
 	   	$statement .= $this->tabs(2)."{".PHP_EOL;
 	   	
-	   	$statement .= $this->tabs(3).'$pdo_connection = starfishDatabase::getConnection();'.PHP_EOL;
+	   	$statement .= $this->tabs(3).'$pdo_connection = Spine_DB::connection();'.PHP_EOL;
 	   	$statement .= $this->tabs(3).'$sql = "UPDATE'.PHP_EOL;
 	   	$statement .= $this->tabs(7).$this->table."".PHP_EOL;
 	   	$statement .= $this->tabs(6)."SET".PHP_EOL;
@@ -424,7 +424,7 @@ class modelGenerator
 		$insert .= $this->tabs(2)."try".PHP_EOL;
 		$insert .= $this->tabs(2)."{".PHP_EOL;
 		
-		$insert .= $this->tabs(3).'$pdo_connection = starfishDatabase::getConnection();'.PHP_EOL;
+		$insert .= $this->tabs(3).'$pdo_connection = Spine_DB::connection();'.PHP_EOL;
 		$insert .= $this->tabs(3).'$sql = "INSERT INTO'.PHP_EOL;
 		$insert .= $this->tabs(6).$this->table.PHP_EOL;
 		$insert .= $this->tabs(6)."(".PHP_EOL;
@@ -516,16 +516,8 @@ class modelGenerator
 	
 }
 
-
-
 $generator = new modelGenerator();
 $generator->generateSingularClass();
 $generator->generatePluralClass();
-
-
-
-
-
-
 
 ?>

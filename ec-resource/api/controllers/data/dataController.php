@@ -25,7 +25,7 @@ class dataController extends Spine_SuperController
 	public function getCollegeProfileAction()
 	{
 		$college_code	=	$_POST['college_code'];
-		$this->cacheOutput('college_profile_'.$college_code);
+		//$this->cacheOutput('college_profile_'.$college_code);
 		
 		$output	=	output($this->getCollegeProfileContent($college_code));
 		
@@ -41,7 +41,7 @@ class dataController extends Spine_SuperController
 	
 	public function getCollegesListAction()
 	{
-		$this->cacheOutput('college_listing');
+		//$this->cacheOutput('college_listing');
 		
 		$json_college		=	new filebaseJsonHandler();
 		$json_college->path	=	COLLEGES_DATA;
@@ -51,6 +51,15 @@ class dataController extends Spine_SuperController
 		$this->setHeaders('HTTP/1.0 200 OK');
 		
 		$this->displayPhtml('content', 'main/content', array('output' => $output));
+	}
+	
+	//-----------------------------------------------------------------------------------
+	
+	public function getZipcodesAction()
+	{
+		//$this->cacheOutput('info.zipcodes');
+		$this->setHeaders('HTTP/1.0 200 OK');
+		$this->displayPhtml('content', 'main/content', array('output' => $this->getZipcodes()));
 	}
 	
 	//-----------------------------------------------------------------------------------
@@ -65,6 +74,16 @@ class dataController extends Spine_SuperController
 	{
 		$college_profile_model	=	new college_profile();
 		return $college_profile_model->getProfile($college_code);
+	}
+	
+	//------------------------------------------------------------------------------------
+	
+	private function getZipcodes()
+	{
+		$json_college		=	new filebaseJsonHandler();
+		$json_college->path	=	COLLEGES_DATA;
+		
+		return	$json_college->selectAll('info.zipcodes');
 	}
 	
 	//------------------------------------------------------------------------------------
